@@ -21,6 +21,11 @@ public final class Constants {
 
     public static RobotState m_RobotState = new RobotState(null);
 
+    public static final int m_fRightPort = 0;
+    public static final int m_bRightPort = 1;
+    public static final int m_fLeftPort = 2;
+    public static final int m_bLeftPort = 3;
+
     public final static class ControllerConstants {
         public static final int controllerPort = 0; // Controller port
 
