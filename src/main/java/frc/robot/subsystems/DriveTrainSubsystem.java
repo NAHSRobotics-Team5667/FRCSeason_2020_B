@@ -31,8 +31,11 @@ public class DriveTrainSubsystem extends SubsystemBase {
 
 	}
 
-	public void curvatureDrive(final double throttle, final double angle, final boolean isQuickTurn) {
-		drive.curvatureDrive(throttle, angle, isQuickTurn);
+	public void curvatureDrive(final Double double1, final Double double2, final boolean isQuickTurn) {
+		drive.curvatureDrive(double1, double2, isQuickTurn);
+  }
+  public void stop(){
+	  drive.stopMotor();
   }
  
 

@@ -9,6 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.utils.Controller;
 
 /**
@@ -21,7 +22,7 @@ import frc.robot.utils.Controller;
 public class RobotContainer {
 	// The robot's subsystems and commands are defined here...
 	private static Controller m_controller = new Controller(Constants.ControllerConstants.controllerPort);
-	
+	private static DriveTrainSubsystem m_DriveTrain = new DriveTrainSubsystem();
 	/**
 	 * The container for the robot. Contains subsystems, OI devices, and commands.
 	 */
@@ -56,5 +57,8 @@ public class RobotContainer {
 	 */
 	public static Controller getController() {
 		return m_controller;
+	}
+	public static DriveTrainSubsystem getDriveTrain(){
+		return m_DriveTrain;
 	}
 }
