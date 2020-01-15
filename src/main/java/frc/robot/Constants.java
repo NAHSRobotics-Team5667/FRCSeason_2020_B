@@ -21,10 +21,10 @@ public final class Constants {
 
     public static RobotState m_RobotState = new RobotState(null);
     public final static class DriveTrainConstants{
-        public static final int fRightPort = 0;
-        public static final int bRightPort = 1;
-        public static final int fLeftPort = 2;
-        public static final int bLeftPort = 3;
+        public static final int fRight = 0;
+        public static final int bRight = 1;
+        public static final int fLeft = 2;
+        public static final int bLeft = 3;
     }
    
 

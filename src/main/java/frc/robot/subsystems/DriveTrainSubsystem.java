@@ -18,25 +18,36 @@ public class DriveTrainSubsystem extends SubsystemBase {
 	private SpeedController m_fRight, m_bRight, m_fLeft, m_bLeft;
     private final SpeedControllerGroup m_right;
 	private final SpeedControllerGroup m_left;
-	DifferentialDrive drive;
+	private DifferentialDrive m_drive;
 
 	/**
 	 * Creates a new DriveTrainSubsystem.
+	 * @param fRight   - The Front Right Motor
+	 * @param fLeft    - The Front Left Motor
+	 * @param bRight   - The Back Right Motor
+	 * @param bLeft    - The Back Left Motor
+	 * 
 	 */
-	public DriveTrainSubsystem() {
+	public DriveTrainSubsystem(SpeedController fRight, SpeedController bRight,SpeedController fLeft,SpeedController bLeft) {
+
+		fRight = m_fRight;
+		bRight = m_bRight;
+		fLeft = m_fLeft;
+		bLeft = m_bLeft;
+
 
 		m_right = new SpeedControllerGroup(m_fRight, m_bRight);
 		m_left = new SpeedControllerGroup(m_fLeft, m_bLeft);
-		drive = new DifferentialDrive(m_left, m_right);
+		m_drive = new DifferentialDrive(m_left, m_right);
 
 	}
 
-	public void curvatureDrive(final Double double1, final Double double2, final boolean isQuickTurn) {
-		drive.curvatureDrive(double1, double2, isQuickTurn);
-  }
+	public void drive(Double throttle, Double rotation,boolean isQuickTurn) {//RENAME VARIABLES
+		m_drive.curvatureDrive(throttle, rotation, isQuickTurn);
+	}
   public void stop(){
-	  drive.stopMotor();
-  }
+	  	m_drive.stopMotor();
+	}
  
 
   @Override
