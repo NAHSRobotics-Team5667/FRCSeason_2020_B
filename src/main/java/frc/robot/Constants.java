@@ -26,6 +26,14 @@ public final class Constants {
         public static final int fLeft = 2;
         public static final int bLeft = 3;
     }
+    public final static class IntakeConstants{
+        public static final int belt = 4;
+        public static final int intake = 5;
+        public static final int lSolenoid = 1;
+        public static final int rSolenoid = 2;
+        public static final int ultraSonicPing = 0;
+        public static final int ultraSonicEcho = 0;
+    }
    
 
     public final static class ControllerConstants {

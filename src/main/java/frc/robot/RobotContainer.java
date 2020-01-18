@@ -9,8 +9,11 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.PWMTalonSRX;
+import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.DriveTrainSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.utils.Controller;
 
 /**
@@ -24,6 +27,8 @@ public class RobotContainer {
 	// The robot's subsystems and commands are defined here...
 	private static Controller m_controller = new Controller(Constants.ControllerConstants.controllerPort);
 	private static DriveTrainSubsystem m_driveTrain;
+	private static IntakeSubsystem m_intake;
+
 	/**
 	 * The container for the robot. Contains subsystems, OI devices, and commands.
 	 */
@@ -33,6 +38,10 @@ public class RobotContainer {
 		m_driveTrain =  new DriveTrainSubsystem(new PWMTalonSRX(Constants.DriveTrainConstants.fRight),
 		new PWMTalonSRX(Constants.DriveTrainConstants.bRight), new PWMTalonSRX(Constants.DriveTrainConstants.fLeft),
 		new PWMTalonSRX(Constants.DriveTrainConstants.bLeft));
+		m_intake = new IntakeSubsystem(new PWMTalonSRX(Constants.IntakeConstants.belt), new PWMTalonSRX(Constants.IntakeConstants.intake),
+		new Solenoid(Constants.IntakeConstants.lSolenoid), new Solenoid(Constants.IntakeConstants.rSolenoid), 
+		new Ultrasonic(Constants.IntakeConstants.ultraSonicPing, Constants.IntakeConstants.ultraSonicEcho)); 
+		
 	}
 
 	/**
