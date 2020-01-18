@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class IntakeSubsystem extends SubsystemBase {
@@ -17,16 +18,19 @@ public class IntakeSubsystem extends SubsystemBase {
 
 	private Solenoid m_lSolenoid, m_rSolenoid;
 
+	private Ultrasonic m_ultraSonic;
+
 
 
   /**
    * Creates a new IntakeSubsystem.
    */
-  public IntakeSubsystem(SpeedController belt, SpeedController intake, Solenoid lSolenoid, Solenoid rSolenoid) {
+  public IntakeSubsystem(SpeedController belt, SpeedController intake, Solenoid lSolenoid, Solenoid rSolenoid, Ultrasonic ultraSonic) {
 	belt = m_belt;
 	intake = m_intake;
 	lSolenoid = m_lSolenoid;
 	rSolenoid = m_rSolenoid;
+	ultraSonic = m_ultraSonic;
   }
 
   public void retractIntake(){
@@ -45,6 +49,19 @@ public class IntakeSubsystem extends SubsystemBase {
 		m_intake.set(1.0);
 	  }
   }
+  public boolean hasSeenBall(){
+	if(m_ultraSonic.getRangeInches() < 12.0) {
+		return true;
+	}else{
+		return false;
+	}
+  }
+  public void beltOn(){
+	 m_belt.set(1.0);
+  }
+  public void beltOff(){
+	m_belt.set(0);
+ }
 
   @Override
   public void periodic() {

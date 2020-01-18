@@ -27,7 +27,8 @@ public class IntakeCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_intake.retractIntake();
+	m_intake.retractIntake();		
+	m_intake.beltOff();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -36,13 +37,18 @@ public class IntakeCommand extends CommandBase {
     if(RobotContainer.getController().getBButton() == true){
        m_intake.toggleIntake();
     }
-     
+    if(m_intake.hasSeenBall()){
+		m_intake.beltOn();
+    }else{
+		m_intake.beltOff();
+	}
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_intake.retractIntake();
+	m_intake.retractIntake();
+	m_intake.beltOff();
   }
 
   // Returns true when the command should end.
