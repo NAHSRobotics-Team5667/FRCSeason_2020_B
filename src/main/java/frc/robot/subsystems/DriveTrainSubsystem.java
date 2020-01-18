@@ -42,7 +42,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
 
 	}
 
-	public void drive(Double throttle, Double rotation,boolean isQuickTurn) {//RENAME VARIABLES
+	public void drive(Double throttle, Double rotation,boolean isQuickTurn) {
 		m_drive.curvatureDrive(throttle, rotation, isQuickTurn);
 	}
   public void stop(){
