@@ -27,7 +27,7 @@ public class ShooterCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    shooterSubsystem.shoot(1);
+    shooterSubsystem.shoot(0);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -41,17 +41,18 @@ public class ShooterCommand extends CommandBase {
      PIDFController.calculate(0);  */
     shooterSubsystem.aim(angleController.calculate(shooterSubsystem.getAngle()));
   }
-  if (RobotContainer.getController().getAButtonPressed()) {}
-    //motor which fires shoots
+	if (RobotContainer.getController().getAButtonPressed()) {}
+    	//motor which fires shoots
+	 	shooterSubsystem.shoot(1);
   }
   // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-  }
+	@Override
+		public void end(boolean interrupted) {
+	}
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+     return false;
   }
 }

@@ -31,31 +31,33 @@ package frc.robot.subsystems;
    /**
     * Gets the current count of shooter
     */
-   public int getCurrentCountShooter() {
+   public int getShooter() {
      return shooterEncoder.get();
    }
 
    /**
     * Gets the current count of angle
     */
-   public int getCurrentCountAngle() {
+   public int getAngle() {
      return angleEncoder.get();
    }
 
    /**
-    * @param is speed of shooter motor fires the shooter moter
+    * @param speed : Speed that the shooter motor fires the shooter motor
     */
    public void shoot(double speed) {
      this.shooterMotor.set(speed);
    }
 
-
+  /**
+   * @param speed : Direction the angle motor moves- a positive number moves it up, negative number moves it down
+   */
    public void aim(double speed) {
      this.angleMotor.set(speed);
    }
 
    /**
-    * Stops the angle moter from changing
+    * Stops the angle motor from changing.
     * 
     */
    public void angleMotorStop() {
@@ -63,7 +65,7 @@ package frc.robot.subsystems;
    }
 
    /**
-    * Stops the shooter from firing
+    * Stops the shooter from firing.
     * 
     */
    public void shooterMotorStop() {
