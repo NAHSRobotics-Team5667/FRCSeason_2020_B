@@ -12,9 +12,8 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class WheelSubsystem extends SubsystemBase {
- 
-  private SpeedController m_motor;
-  private Encoder m_encoder;
+	private SpeedController m_motor;
+	private Encoder m_encoder;
 
   /**
    * Creates a new WheelSubsystem.
@@ -22,15 +21,17 @@ public class WheelSubsystem extends SubsystemBase {
    * 
    * @param encoder - the wheel encoder
    */
-  public WheelSubsystem(SpeedController motor, Encoder encoder) {
-    this.m_motor = motor;
-    this.m_encoder = encoder;
+	public WheelSubsystem(SpeedController motor, Encoder encoder) {
+    	this.m_motor = motor;
+    	this.m_encoder = encoder;
   }
+
+
   /**
   * Gets the current count of wheel
   */
   public int getWheel() {
-    return m_encoder.get();
+	return m_encoder.get();
   }
   
   /**
@@ -44,7 +45,7 @@ public class WheelSubsystem extends SubsystemBase {
   * Stops the wheel motor
   */
  public void turnOffMotor() {
-   m_motor.stopMotor()
+    m_motor.stopMotor();
  }
   @Override
   public void periodic() {
