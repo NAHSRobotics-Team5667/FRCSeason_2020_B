@@ -20,6 +20,7 @@ package frc.robot.subsystems;
 
    /**
     * Creates a new ShooterSubsystem.
+    * @param SpeeedController moter controller that changes speed
     */
    public ShooterSubsystem(SpeedController motor, Encoder encoder) {
      this.shooterMotor = motor;
@@ -43,6 +44,7 @@ package frc.robot.subsystems;
    }
 
    /**
+   * Shoots the ball / starts the motor
     * @param speed : Speed that the shooter motor fires the shooter motor
     */
    public void shoot(double speed) {
@@ -50,6 +52,7 @@ package frc.robot.subsystems;
    }
 
   /**
+  * aims the shooters angle 
    * @param speed : Direction the angle motor moves- a positive number moves it up, negative number moves it down
    */
    public void aim(double speed) {
