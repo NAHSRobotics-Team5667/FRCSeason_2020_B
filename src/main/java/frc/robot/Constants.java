@@ -33,6 +33,7 @@ public final class Constants {
         public static final int rSolenoid = 2;
         public static final int ultraSonicPing = 0;
         public static final int ultraSonicEcho = 0;
+        public static final int ultraSonicThreshold = 12;
     }
    
 

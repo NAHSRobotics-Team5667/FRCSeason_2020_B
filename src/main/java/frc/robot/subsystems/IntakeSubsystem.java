@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class IntakeSubsystem extends SubsystemBase {
 
@@ -62,22 +63,26 @@ public class IntakeSubsystem extends SubsystemBase {
 	}
 
 	/**
-	 * if the ultrasonic sensor
+	 * if the ultrasonic sensor detects a ball it sends a true to the command and activates the belt
 	 * 
-	 * @return
+	 * @return true is ball is seen and false if not
 	 */
 	public boolean hasSeenBall() {
-		if (m_ultraSonic.getRangeInches() < 12.0) {
+		if (m_ultraSonic.getRangeInches() < Constants.IntakeConstants.ultraSonicThreshold) {
 			return true;
 		} else {
 			return false;
 		}
 	}
-
+	/**
+	 * turns belt on
+	 */
 	public void beltOn() {
 		m_belt.set(1.0);
 	}
-
+	/**
+	 * turns belt off
+	 */
 	public void beltOff() {
 		m_belt.set(0);
 	}
