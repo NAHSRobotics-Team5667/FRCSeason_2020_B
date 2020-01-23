@@ -79,23 +79,6 @@ public class IntakeSubsystem extends SubsystemBase {
 	}
 
 	/**
-	 * increments ball count when hasSeenBall returns true
-	 */
-	public void incrementBallCount() {
-		while (hasSeenBall()) {
-			// keep from iterating while it is true
-		}
-		ballCount++;
-	}
-
-	/**
-	 * resets ball count
-	 */
-	public void resetBallCount() {
-		ballCount = 0;
-	}
-
-	/**
 	 * turns belt on
 	 */
 	public void beltOn() {

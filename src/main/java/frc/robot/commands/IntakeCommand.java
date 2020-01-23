@@ -15,6 +15,10 @@ public class IntakeCommand extends CommandBase {
 
 	private IntakeSubsystem m_intake;
 
+	boolean currentBoolean, previousBoolean;
+
+	int ballCount;
+
 	/**
 	 * Creates a new IntakeCommand.
 	 */
@@ -29,7 +33,6 @@ public class IntakeCommand extends CommandBase {
 	public void initialize() {
 		m_intake.retractIntake();
 		m_intake.beltOff();
-		m_intake.resetBallCount();
 	}
 
 	// Called every time the scheduler runs while the command is scheduled.
@@ -40,10 +43,15 @@ public class IntakeCommand extends CommandBase {
 		}
 		if (m_intake.hasSeenBall()) {
 			m_intake.beltOn();
-			m_intake.incrementBallCount();
+			currentBoolean = true;
 		} else {
 			m_intake.beltOff();
+			currentBoolean = false;
 		}
+		if (currentBoolean == false && previousBoolean == true) {
+			ballCount++;
+		}
+		previousBoolean = currentBoolean;
 	}
 
 	// Called once the command ends or is interrupted.
