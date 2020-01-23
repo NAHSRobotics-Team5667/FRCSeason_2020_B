@@ -20,51 +20,70 @@ public class IntakeSubsystem extends SubsystemBase {
 
 	private Ultrasonic m_ultraSonic;
 
+	/**
+	 * Creates a new IntakeSubsystem.
+	 * 
+	 * @param belt      - leads ball from intake to shooter
+	 * @param intake    - motor attached to the ground intake
+	 * @param lSolenoid - left solenoid for deploy pistons
+	 * @param rSolenoid - right solenoid for deploy pistons
+	 */
+	public IntakeSubsystem(SpeedController belt, SpeedController intake, Solenoid lSolenoid, Solenoid rSolenoid,
+			Ultrasonic ultraSonic) {
+		belt = m_belt;
+		intake = m_intake;
+		lSolenoid = m_lSolenoid;
+		rSolenoid = m_rSolenoid;
+		ultraSonic = m_ultraSonic;
+	}
 
-
-  /**
-   * Creates a new IntakeSubsystem.
-   */
-  public IntakeSubsystem(SpeedController belt, SpeedController intake, Solenoid lSolenoid, Solenoid rSolenoid, Ultrasonic ultraSonic) {
-	belt = m_belt;
-	intake = m_intake;
-	lSolenoid = m_lSolenoid;
-	rSolenoid = m_rSolenoid;
-	ultraSonic = m_ultraSonic;
-  }
-
-  public void retractIntake(){
-	m_lSolenoid.set(false);
-	m_rSolenoid.set(false);
-	m_intake.set(0);
-  }
-  public void toggleIntake(){
-	  if(m_rSolenoid.get()){
+	/**
+	 * retracts intake and turns off intake motors
+	 */
+	public void retractIntake() {
 		m_lSolenoid.set(false);
 		m_rSolenoid.set(false);
 		m_intake.set(0);
-	  }else{
-		m_lSolenoid.set(true);
-		m_rSolenoid.set(true);
-		m_intake.set(1.0);
-	  }
-  }
-  public boolean hasSeenBall(){
-	if(m_ultraSonic.getRangeInches() < 12.0) {
-		return true;
-	}else{
-		return false;
 	}
-  }
-  public void beltOn(){
-	 m_belt.set(1.0);
-  }
-  public void beltOff(){
-	m_belt.set(0);
- }
 
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
-  }
+	/**
+	 * if intake is out puts it back up and vice versa
+	 */
+	public void toggleIntake() {
+		if (m_rSolenoid.get()) {
+			m_lSolenoid.set(false);
+			m_rSolenoid.set(false);
+			m_intake.set(0);
+		} else {
+			m_lSolenoid.set(true);
+			m_rSolenoid.set(true);
+			m_intake.set(1.0);
+		}
+	}
+
+	/**
+	 * if the ultrasonic sensor
+	 * 
+	 * @return
+	 */
+	public boolean hasSeenBall() {
+		if (m_ultraSonic.getRangeInches() < 12.0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public void beltOn() {
+		m_belt.set(1.0);
+	}
+
+	public void beltOff() {
+		m_belt.set(0);
+	}
+
+	@Override
+	public void periodic() {
+		// This method will be called once per scheduler run
+	}
 }
