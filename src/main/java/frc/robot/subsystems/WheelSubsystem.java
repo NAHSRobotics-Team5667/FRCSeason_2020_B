@@ -10,10 +10,13 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.util.Color;
+import com.revrobotics.*;
 
 public class WheelSubsystem extends SubsystemBase {
 	private SpeedController m_motor;
 	private Encoder m_encoder;
+	private ColorSensorV3 m_colorV3;
 
   /**
    * Creates a new WheelSubsystem.
@@ -21,9 +24,10 @@ public class WheelSubsystem extends SubsystemBase {
    * 
    * @param encoder - the wheel encoder
    */
-	public WheelSubsystem(SpeedController motor, Encoder encoder) {
+	public WheelSubsystem(SpeedController motor, Encoder encoder, ColorSensorV3 colorV3) {
     	this.m_motor = motor;
-    	this.m_encoder = encoder;
+		this.m_encoder = encoder;
+		this.m_colorV3 = colorV3;
   }
 
 
@@ -34,6 +38,13 @@ public class WheelSubsystem extends SubsystemBase {
 	return m_encoder.get();
   }
   
+  /**
+  * Gets the current color of wheel
+  */
+  public RawColor getColor() {
+	return m_colorV3.getRawColor();
+  }
+
   /**
    *  @param speed : Speed that the wheel motor moves
   */
@@ -47,6 +58,7 @@ public class WheelSubsystem extends SubsystemBase {
  public void turnOff() {
     m_motor.stopMotor();
  }
+ public 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

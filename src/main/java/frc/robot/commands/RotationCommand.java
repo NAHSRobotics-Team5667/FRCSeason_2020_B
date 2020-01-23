@@ -13,7 +13,7 @@ import frc.robot.subsystems.WheelSubsystem;
 import frc.robot.utils.PIDFController;
 
 public class RotationCommand extends CommandBase {
-  PIDFController rotationController = new PIDFController("rotation", 0, 0, 0, 0);
+  // not needed here (PIDFController rotationController = new PIDFController("rotation", 0, 0, 0, 0);)
   WheelSubsystem wheelSubsystem;
   /**
    * Creates a new RotationCommand.
@@ -34,7 +34,7 @@ public class RotationCommand extends CommandBase {
   @Override
   public void execute() {
     while(RobotContainer.getController().getXButtonPressed()){
-      /* Haikus with Olu
+      /* Haikus with Olu:
       *
       * While "X" button's held...
       * then spin the motor so long...
@@ -42,10 +42,11 @@ public class RotationCommand extends CommandBase {
       * 
       * This has been Haikus with Olu.
       */
+
         wheelSubsystem.rotateSpeed(1);
-      }
+  
     }
-      wheelSubsystem.rotateSpeed(0);
+    wheelSubsystem.rotateSpeed(0);
   }
 
   // Called once the command ends or is interrupted.
