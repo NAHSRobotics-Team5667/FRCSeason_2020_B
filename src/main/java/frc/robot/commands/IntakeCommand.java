@@ -29,6 +29,7 @@ public class IntakeCommand extends CommandBase {
 	public void initialize() {
 		m_intake.retractIntake();
 		m_intake.beltOff();
+		m_intake.resetBallCount();
 	}
 
 	// Called every time the scheduler runs while the command is scheduled.
@@ -39,6 +40,7 @@ public class IntakeCommand extends CommandBase {
 		}
 		if (m_intake.hasSeenBall()) {
 			m_intake.beltOn();
+			m_intake.incrementBallCount();
 		} else {
 			m_intake.beltOff();
 		}

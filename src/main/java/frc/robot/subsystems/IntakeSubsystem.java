@@ -21,6 +21,8 @@ public class IntakeSubsystem extends SubsystemBase {
 
 	private Ultrasonic m_ultraSonic;
 
+	public int ballCount;
+
 	/**
 	 * Creates a new IntakeSubsystem.
 	 * 
@@ -63,7 +65,8 @@ public class IntakeSubsystem extends SubsystemBase {
 	}
 
 	/**
-	 * if the ultrasonic sensor detects a ball it sends a true to the command and activates the belt
+	 * if the ultrasonic sensor detects a ball it sends a true to the command and
+	 * activates the belt
 	 * 
 	 * @return true is ball is seen and false if not
 	 */
@@ -74,12 +77,25 @@ public class IntakeSubsystem extends SubsystemBase {
 			return false;
 		}
 	}
+
+	public void incrementBallCount() {
+		while (hasSeenBall()) {
+			// keep from iterating while it is true
+		}
+		ballCount++;
+	}
+
+	public void resetBallCount() {
+		ballCount = 0;
+	}
+
 	/**
 	 * turns belt on
 	 */
 	public void beltOn() {
 		m_belt.set(1.0);
 	}
+
 	/**
 	 * turns belt off
 	 */

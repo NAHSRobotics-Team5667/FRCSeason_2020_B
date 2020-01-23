@@ -35,13 +35,15 @@ public class RobotContainer {
 	public RobotContainer() {
 		// Configure the button bindings
 		configureButtonBindings();
-		m_driveTrain =  new DriveTrainSubsystem(new PWMTalonSRX(Constants.DriveTrainConstants.fRight),
-		new PWMTalonSRX(Constants.DriveTrainConstants.bRight), new PWMTalonSRX(Constants.DriveTrainConstants.fLeft),
-		new PWMTalonSRX(Constants.DriveTrainConstants.bLeft));
-		m_intake = new IntakeSubsystem(new PWMTalonSRX(Constants.IntakeConstants.belt), new PWMTalonSRX(Constants.IntakeConstants.intake),
-		new Solenoid(Constants.IntakeConstants.lSolenoid), new Solenoid(Constants.IntakeConstants.rSolenoid), 
-		new Ultrasonic(Constants.IntakeConstants.ultraSonicPing, Constants.IntakeConstants.ultraSonicEcho)); 
-		
+		m_driveTrain = new DriveTrainSubsystem(new PWMTalonSRX(Constants.DriveTrainConstants.fRight),
+				new PWMTalonSRX(Constants.DriveTrainConstants.bRight),
+				new PWMTalonSRX(Constants.DriveTrainConstants.fLeft),
+				new PWMTalonSRX(Constants.DriveTrainConstants.bLeft));
+		m_intake = new IntakeSubsystem(new PWMTalonSRX(Constants.IntakeConstants.belt),
+				new PWMTalonSRX(Constants.IntakeConstants.intake), new Solenoid(Constants.IntakeConstants.lSolenoid),
+				new Solenoid(Constants.IntakeConstants.rSolenoid),
+				new Ultrasonic(Constants.IntakeConstants.ultraSonicPing, Constants.IntakeConstants.ultraSonicEcho));
+
 	}
 
 	/**
@@ -71,8 +73,13 @@ public class RobotContainer {
 	public static Controller getController() {
 		return m_controller;
 	}
-	public static DriveTrainSubsystem getDriveTrain(){
+
+	public static DriveTrainSubsystem getDriveTrain() {
 		return m_driveTrain;
+	}
+
+	public static IntakeSubsystem getIntake() {
+		return m_intake;
 	}
 
 }
