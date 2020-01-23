@@ -37,14 +37,14 @@ public class WheelSubsystem extends SubsystemBase {
   /**
    *  @param speed : Speed that the wheel motor moves
   */
-  public void shoot(double speed) {
+  public void rotateSpeed(double speed) {
     m_motor.set(speed);
   }
   
   /**
   * Stops the wheel motor
   */
- public void turnOffMotor() {
+ public void turnOff() {
     m_motor.stopMotor();
  }
   @Override
