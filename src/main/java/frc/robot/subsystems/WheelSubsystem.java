@@ -41,8 +41,8 @@ public class WheelSubsystem extends SubsystemBase {
   /**
   * Gets the current color of wheel
   */
-  public RawColor getColor() {
-	return m_colorV3.getRawColor();
+  public Color getColor() {
+	return m_colorV3.getColor();
   }
 
   /**
