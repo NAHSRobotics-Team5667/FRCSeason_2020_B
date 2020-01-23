@@ -7,11 +7,11 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.ColorSensorV3;
+
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj.util.Color;
-import com.revrobotics.*;
 
 public class WheelSubsystem extends SubsystemBase {
 	private SpeedController m_motor;
@@ -39,10 +39,24 @@ public class WheelSubsystem extends SubsystemBase {
   }
   
   /**
-  * Gets the current color of wheel
+  * Gets the current red value of wheel
   */
-  public Color getColor() {
-	return m_colorV3.getColor();
+  public int getRedColor() {
+	return m_colorV3.getRed();
+  }
+
+   /**
+  * Gets the current blue value of wheel
+  */
+  public int getBlueColor() {
+	return m_colorV3.getBlue();
+  }
+
+   /**
+  * Gets the current green value of wheel
+  */
+  public int getGreenColor() {
+	return m_colorV3.getGreen();
   }
 
   /**
