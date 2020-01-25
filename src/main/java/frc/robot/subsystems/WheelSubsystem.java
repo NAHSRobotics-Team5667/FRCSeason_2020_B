@@ -11,6 +11,7 @@ import com.revrobotics.ColorSensorV3;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class WheelSubsystem extends SubsystemBase {
@@ -39,25 +40,14 @@ public class WheelSubsystem extends SubsystemBase {
   }
   
   /**
-  * Gets the current red value of wheel
+  * Gets the current Color values of color sensor + IR Value and displays on SmartDashboard
   */
-  public int getRedColor() {
-	return m_colorV3.getRed();
-  }
-
-   /**
-  * Gets the current blue value of wheel
-  */
-  public int getBlueColor() {
-	return m_colorV3.getBlue();
-  }
-
-   /**
-  * Gets the current green value of wheel
-  */
-  public int getGreenColor() {
-	return m_colorV3.getGreen();
-  }
+ public void getValues() {
+	 SmartDashboard.putNumber("Red", m_colorV3.getRed());
+	 SmartDashboard.putNumber("Blue", m_colorV3.getBlue());
+	 SmartDashboard.putNumber("Green", m_colorV3.getGreen());
+	 SmartDashboard.putNumber("IR", m_colorV3.getIR());
+ }
 
   /**
    *  @param speed : Speed that the wheel motor moves
@@ -69,10 +59,9 @@ public class WheelSubsystem extends SubsystemBase {
   /**
   * Stops the wheel motor
   */
- public void turnOff() {
+ public void turnOffMotor() {
     m_motor.stopMotor();
- }
- public 
+ } 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
