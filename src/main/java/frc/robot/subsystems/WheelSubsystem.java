@@ -7,12 +7,15 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.ColorMatch;
 import com.revrobotics.ColorSensorV3;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
 
 public class WheelSubsystem extends SubsystemBase {
 	private SpeedController m_motor;
@@ -21,9 +24,13 @@ public class WheelSubsystem extends SubsystemBase {
 
   /**
    * Creates a new WheelSubsystem.
+   * 
    * @param motor - the wheel motor
    * 
    * @param encoder - the wheel encoder
+   * 
+   * @param colorV3 - the color sensor
+   *  
    */
 	public WheelSubsystem(SpeedController motor, Encoder encoder, ColorSensorV3 colorV3) {
     	this.m_motor = motor;
@@ -31,7 +38,43 @@ public class WheelSubsystem extends SubsystemBase {
 		this.m_colorV3 = colorV3;
   }
 
-
+  /**
+   * gets the target color letter and runs code based on the color
+   */
+  public Color targetColor(String gameData) {
+	gameData = DriverStation.getInstance().getGameSpecificMessage();
+	
+	if(gameData.length() > 0)
+	{
+	  switch (gameData.charAt(0))
+	  {
+		case 'B' :
+		  //the robot will see red at this point
+		  //so spin until it sees red
+		  
+		  SmartDashboard.putNumber("key", value)
+		  break;
+		case 'G' :
+		  //the robot will see yellow at this point
+		  //so spin until it sees yellow
+		  break;
+		case 'R' :
+		  //the robot will see blue at this point
+		  //so spin until it sees blue
+		  break;
+		case 'Y' :
+		  //the robot will see green at this point
+		  //so spin until it sees green
+		  break;
+		default :
+		  //This is corrupt data
+		  break;
+	  }
+	} else {
+	  //Code for no data received yet
+	}
+  }
+ 
   /**
   * Gets the current count of wheel
   */

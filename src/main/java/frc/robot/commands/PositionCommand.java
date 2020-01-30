@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.RobotContainer;
 import frc.robot.subsystems.WheelSubsystem;
 
 public class PositionCommand extends CommandBase {
@@ -30,6 +31,18 @@ public class PositionCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+
+    if (RobotContainer.getController().getYButtonPressed()){
+      
+      while( /*the target color is not equal to current color*/ ) {
+        //Robot.getTargetColor();
+        wheelSubsystem.rotateSpeed(0.2);
+        //the color sensor gets the target color,
+        //then the motor starts spinning.
+      }
+      wheelSubsystem.rotateSpeed(0);
+    }
+
   }
 
   // Called once the command ends or is interrupted.

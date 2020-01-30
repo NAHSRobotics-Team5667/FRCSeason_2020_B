@@ -4,13 +4,12 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-
+//Countdown timer
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.WheelSubsystem;
-import frc.robot.utils.PIDFController;
 
 public class RotationCommand extends CommandBase {
   // not needed here (PIDFController rotationController = new PIDFController("rotation", 0, 0, 0, 0);)
