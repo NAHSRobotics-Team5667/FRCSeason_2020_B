@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import com.revrobotics.ColorMatch;
 import com.revrobotics.ColorSensorV3;
 
+import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -21,6 +22,7 @@ public class WheelSubsystem extends SubsystemBase {
 	private SpeedController m_motor;
 	private Encoder m_encoder;
 	private ColorSensorV3 m_colorV3;
+	private ColorMatch m_colorMatch;
 
   /**
    * Creates a new WheelSubsystem.
@@ -30,49 +32,55 @@ public class WheelSubsystem extends SubsystemBase {
    * @param encoder - the wheel encoder
    * 
    * @param colorV3 - the color sensor
+   * 
+   * @param colorMatch - color match
    *  
    */
-	public WheelSubsystem(SpeedController motor, Encoder encoder, ColorSensorV3 colorV3) {
+	public WheelSubsystem(SpeedController motor, Encoder encoder, ColorSensorV3 colorV3, ColorMatch colorMatch) {
     	this.m_motor = motor;
 		this.m_encoder = encoder;
 		this.m_colorV3 = colorV3;
+		this.m_colorMatch = colorMatch;
   }
 
   /**
-   * gets the target color letter and runs code based on the color
+   * gets the target color letter and returns the color the robot will see at target color
    */
-  public Color targetColor(String gameData) {
-	gameData = DriverStation.getInstance().getGameSpecificMessage();
-	
+  public Color targetColor() {
+	String gameData = DriverStation.getInstance().getGameSpecificMessage();
 	if(gameData.length() > 0)
 	{
 	  switch (gameData.charAt(0))
 	  {
 		case 'B' :
 		  //the robot will see red at this point
-		  //so spin until it sees red
+		  //so spin until it sees red 
+		 return ColorMatch.makeColor(255, 0, 0);
 		  
-		  SmartDashboard.putNumber("key", value)
-		  break;
-		case 'G' :
+			case 'G':
 		  //the robot will see yellow at this point
 		  //so spin until it sees yellow
-		  break;
-		case 'R' :
+		return ColorMatch.makeColor(255, 255, 0);
+
+			case 'R':
 		  //the robot will see blue at this point
 		  //so spin until it sees blue
-		  break;
-		case 'Y' :
+		return ColorMatch.makeColor(0, 255, 255);
+
+			case 'Y' :
 		  //the robot will see green at this point
 		  //so spin until it sees green
-		  break;
+		return ColorMatch.makeColor(0, 255, 0);
+
 		default :
 		  //This is corrupt data
 		  break;
 	  }
 	} else {
 	  //Code for no data received yet
+	  
 	}
+	return null;
   }
  
   /**
@@ -86,12 +94,26 @@ public class WheelSubsystem extends SubsystemBase {
   * Gets the current Color values of color sensor + IR Value and displays on SmartDashboard
   */
  public void getValues() {
+	
 	 SmartDashboard.putNumber("Red", m_colorV3.getRed());
 	 SmartDashboard.putNumber("Blue", m_colorV3.getBlue());
 	 SmartDashboard.putNumber("Green", m_colorV3.getGreen());
 	 SmartDashboard.putNumber("IR", m_colorV3.getIR());
+	 
  }
 
+ public Color getClosestColor() {
+	Color currentColor = ColorMatch.makeColor(SmartDashboard.getNumber("Red", 0), SmartDashboard.getNumber("Green", 0), SmartDashboard.getNumber("Blue",0));
+	Color closestColor;
+
+	m_colorMatch.addColorMatch(Color.kCyan);
+	m_colorMatch.addColorMatch(Color.kRed);
+	m_colorMatch.addColorMatch(Color.kGreen);
+	m_colorMatch.addColorMatch(Color.kYellow);
+
+	closestColor = m_colorMatch.matchClosestColor(currentColor)
+	//
+ }
   /**
    *  @param speed : Speed that the wheel motor moves
   */
