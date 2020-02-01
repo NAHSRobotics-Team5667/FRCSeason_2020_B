@@ -17,7 +17,7 @@ public class PositionCommand extends CommandBase {
   /**
    * Creates a new PositionCommand.
    */
-  public PositionCommand(WheelSubsystem subsystem) {
+  public PositionCommand(WheelSubsystem subsystem, Color targetedColor, Color currentColor) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
     wheelSubsystem = subsystem;
@@ -32,10 +32,11 @@ public class PositionCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    
     if (RobotContainer.getController().getYButtonPressed()){
-      Color selectedColor = wheelSubsystem.targetColor();
-      if(/* selectedColor != current color */) {
+      Color m_targetedColor = wheelSubsystem.targetColor();
+      Color m_currentColor = wheelSubsystem.getClosestColor();
+      
+      if (m_targetedColor != m_currentColor) {
         wheelSubsystem.rotateSpeed(0.2);
       }
     }
@@ -50,7 +51,14 @@ public class PositionCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (/* the target color = current color */)
-    return false;
+    Color targetedColor = wheelSubsystem.targetColor();
+    Color currentColor = wheelSubsystem.getClosestColor();
+    
+    if (targetedColor == currentColor) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 }

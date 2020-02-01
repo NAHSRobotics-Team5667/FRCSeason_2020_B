@@ -101,7 +101,9 @@ public class WheelSubsystem extends SubsystemBase {
 	 SmartDashboard.putNumber("IR", m_colorV3.getIR());
 	 
  }
-
+/**
+ *  Gets the closest color from the current color to the colors shown on the control panel.
+ */
  public Color getClosestColor() {
 	Color currentColor = ColorMatch.makeColor(SmartDashboard.getNumber("Red", 0), SmartDashboard.getNumber("Green", 0), SmartDashboard.getNumber("Blue",0));
 	Color closestColor;
@@ -111,8 +113,8 @@ public class WheelSubsystem extends SubsystemBase {
 	m_colorMatch.addColorMatch(Color.kGreen);
 	m_colorMatch.addColorMatch(Color.kYellow);
 
-	closestColor = m_colorMatch.matchClosestColor(currentColor)
-	//
+	closestColor = m_colorMatch.matchClosestColor(currentColor).color;
+	return closestColor;
  }
   /**
    *  @param speed : Speed that the wheel motor moves
