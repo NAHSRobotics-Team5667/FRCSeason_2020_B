@@ -19,8 +19,8 @@ public class RotationCommand extends CommandBase {
    */
   public RotationCommand(WheelSubsystem subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(subsystem);
     wheelSubsystem = subsystem;
+    addRequirements(wheelSubsystem);
   }
 
   // Called when the command is initially scheduled.
